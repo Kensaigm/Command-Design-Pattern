@@ -1,17 +1,25 @@
 package net.kensaigm.dp;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
 // Client
 public class CommandDemo {
 
     public static void main(String args[]){
-        Light light = new Light();  // Receiver
+        Light bedroomLight = new Light();  // Receiver
+        Light kitchenLight = new Light();  // Receiver
         Switch lightSwitch = new Switch(); // Invoker
 
-        Command toggleCommand = new ToggleCommand(light);
+        Command toggleCommand = new ToggleCommand(bedroomLight);
 
-        for(int i = 0; i < 3; i++){
-            lightSwitch.storeAndExecute(toggleCommand);
-        }
+        List<Light> lights = new ArrayList<>();
+        lights.add(bedroomLight);
+        lights.add(kitchenLight);
+        Command allLightsCommand = new AllLightsCommand(lights);
+
+        lightSwitch.storeAndExecute(allLightsCommand);
 
     }
 }
