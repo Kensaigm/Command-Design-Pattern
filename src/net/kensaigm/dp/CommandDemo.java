@@ -7,8 +7,11 @@ public class CommandDemo {
         Light light = new Light();  // Receiver
         Switch lightSwitch = new Switch(); // Invoker
 
-        Command onCommand = new OnCommand(light);
+        Command toggleCommand = new ToggleCommand(light);
 
-        lightSwitch.storeAndExecute(onCommand);
+        for(int i = 0; i < 3; i++){
+            lightSwitch.storeAndExecute(toggleCommand);
+        }
+
     }
 }
